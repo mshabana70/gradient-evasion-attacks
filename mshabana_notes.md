@@ -42,7 +42,13 @@ Adversary capabilities are limited to modification of test data in evasion scena
 - mods to the feature vectors (limited or not)
 - independent mods to specific feaures (semantics of the input data may dictate that certain features are interdependent)
 
+#### Attack Scenarios
+
 This paper defines two attack scenarios, **Perfect Knowledge (PK)** and **Limited Knowledge (LK)**:
 
 - **Perfect Knowledge (PK)**: The goal of the adversary is to minimize $g(x)$ and they have knowledge of the feature space, type of classifier, and the trained model. The attacker can also transform attack points in the test data but this will be variable and is defined by $d_{max}$, which is the maximum distance a transformed attack point can be from the original attack sample. For example, the attack will be bounded by a certain number of words they can change in a spam email to evade a spam classifier. The distance measure will be defined as $d : \bm{\mathcal{X}} \times \bm{\mathcal{X}} \mapsto \mathbb{R}^{+}$ and is application specific.
-- **Limited Knowledge (LK)**: The goal of the adversary is the same, minimize $g(x)$ under the same constraints that each transformed attack point must remain within a maximum distance of $d_{max}$ from the corresponding original attack sample. However the attacker will not know the learned classifier $f$ or its training data $\bm{\mathcal{D}}$, consequently not be able to compute $g(x)$. 
+- **Limited Knowledge (LK)**: The goal of the adversary is the same, minimize $g(x)$ under the same constraints that each transformed attack point must remain within a maximum distance of $d_{max}$ from the corresponding original attack sample. However the attacker will not know the learned classifier $f$ or its training data $\bm{\mathcal{D}}$, consequently not be able to compute $g(x)$. The adversary will instead have a surrogate dataset $\bm{\mathcal{D'}} = \{\hat{x}_{i}, \hat{y}_{i}\}_{i=1}^{n_{q}}$ of $n_{q}$ samples from the same underlying distribution $p(\bold{X}, Y)$ that $\bm{\mathcal{D}}$ was drawn from. The adversary approximates $g(\bold{x})$ as $\hat{g}(\bold{x})$, where $\hat{g}(\bold{x})$ is the discriminant function of the surrogate classifier $\hat{f}$ learnt on $\bm{\mathcal{D'}}$ An adversary will want $\hat{f}$ to closely approximate the targeted classifier $f$. So it stands to reason that instead of using the true class labels $\hat{y_{i}}$ to train $\hat{f}$, the adversary can query $f$ with sample from $\bm{\mathcal{D'}}$ and train $\hat{f}$ using the labels $\hat{y}_{i}^{c} = f(\hat{\bold{x}}_{i})$ for each $\bold(x)_{i}$, resulting in an $\hat{f}$ that closely mimics $f$ on the surrogate data.
+
+#### Attack Strategy
+
+Moving on to breaking down the attack strategy from the Biggio paper. 
