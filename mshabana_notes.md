@@ -16,7 +16,7 @@ The classification algorithm is $f: \mathcal{X} \mapsto \mathcal{Y}$, which basi
 
 The classifier $f$ output space $\mathcal{Y}$ equals $\{-1, +1\}$, meaning there are only two possible class labels the output of the classifier can have: -1 and +1 (likely "spam" or "not spam").
 
-The training data $\mathcal{D} = \{x_{i}, y_{i}\}_{i=1}^{n}$ is a dataset with n samples. Each sample has features $x_{i}$ and a true label $y_{i}$. The data comes from some underlying distribution $p(\bm{X}, Y$)$
+The training data $`\mathcal{D} = \{x_{i}, y_{i}\}_{i=1}^{n}`$ is a dataset with n samples. Each sample has features $x_{i}$ and a true label $y_{i}$. The data comes from some underlying distribution $p(\bm{X}, Y$)$
 
 In this paper, classifier output is defined as $f(x) = y^{c}$ to differentiate from the true label $y$. This $y^{c}$ output is given from a thresholding function $g : \mathcal{X} \mapsto \mathbb{R}$, meaning the classifier function's output is computed in two stages: the first stage is a continuous function that produces a real number (something like a confidence score) by the *continuous discriminant function* $g(x)$. The is then handed off to the second stage to be converted to a discrete value by the threshold. In the case of this paper, the threshold is $(g(x) < 0) \to (f(x) = -1)$ and $f(x) = +1$ otherwise. So $g(x)$ does NOT return the $y^{c}$ label but rather a confidence score, and $f(x)$ applies a threshold to get the predicted label $y^{c}$.
 
