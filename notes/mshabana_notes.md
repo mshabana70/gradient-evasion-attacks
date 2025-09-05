@@ -51,4 +51,11 @@ This paper defines two attack scenarios, **Perfect Knowledge (PK)** and **Limite
 
 #### Attack Strategy
 
-Moving on to breaking down the attack strategy from the Biggio paper. 
+
+
+Moving on to breaking down the attack strategy from the Biggio paper. Based on the attack scenarios we covered earlier, we can define our attack strategy in a formal way. For any target malicious sample $x^{0}$ (this is the target point that the attacker wants to reach in the feature space), the best attack strategy would be finding a sample $x^{*}$ to minimize $g(\cdot)$ or it's estimate $\hat{g}(\cdot)$. This is minimization is bounded of course by it's distance from $x^{0}$, which essentially means there is a hard limit to how much the adversary can *change* or *modify* a sample to be classified as the target point.
+
+
+
+NOTE: I think this paper opts to use the gradient descent algorithm in their attack strategy, but states that quadratic techniques like Newton's Method, BFGS and L-BFGS can be an approach. This could be a potential spin-off point worth experimenting with in the future once everything is implemented.
+
