@@ -88,12 +88,8 @@ The final modified optimization problem becomes:
 
 $$\text{arg}\min_{x} F(\textbf{x}) = \hat{g}(\textbf{x}) - \frac{\lambda}{n}\sum_{i|y_{i}^{c}=-1}k(\frac{\textbf{x} - \textbf{x}_{i}}{h}) \space\space \text{s.t} \space\space d(\textbf{x},\textbf{x}^{0}) < d_{max}$$
 
-pretty elegant once you know what's going on lol.
+where $n$ is the number of benign samples $(y^{c} = -1)$ available to the adversary. This computes $g(\textbf{x})$. The optimization problem now becomes a two objective approach where you aim to "fool the classifier" AND "look like real legitimate data". Pretty elegant once you know what's going on lol.
 
 
-
-
-
-
-NOTE: I think this paper opts to use the gradient descent algorithm in their attack strategy, but states that quadratic techniques like Newton's Method, BFGS and L-BFGS can be an approach. This could be a potential spin-off point worth experimenting with in the future once everything is implemented.
+THOUGHT: I think this paper opts to use the gradient descent algorithm in their attack strategy, but states that quadratic techniques like Newton's Method, BFGS and L-BFGS can be an approach. This could be a potential spin-off point worth experimenting with in the future once everything is implemented.
 
