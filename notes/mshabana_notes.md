@@ -90,8 +90,12 @@ $$\text{arg}\min_{x} F(\textbf{x}) = \hat{g}(\textbf{x}) - \frac{\lambda}{n}\sum
 
 where $n$ is the number of benign samples $(y^{c} = -1)$ available to the adversary. This computes $g(\textbf{x})$. It is also important that we highlight the minus sign in front of the KDE component. The reason for this is because when minimizing $F(\textbf{x})$, we will maximize the KDE of the above equation, "pulling" our optimization path towards high-density legitimate regions. The optimization problem now becomes a two objective approach where you aim to "fool the classifier" AND "look like real legitimate data". Pretty elegant once you know what's going on lol.
 
-"need to walk through **Algorithm 1** in my notes here"
-
-
 THOUGHT: I think this paper opts to use the gradient descent algorithm in their attack strategy, but states that quadratic techniques like Newton's Method, BFGS and L-BFGS can be an approach. This could be a potential spin-off point worth experimenting with in the future once everything is implemented.
+
+
+### Gradient descent attacks
+
+
+
+
 
