@@ -97,7 +97,9 @@ THOUGHT: I think this paper opts to use the gradient descent algorithm in their 
 
 Something mentioned in this section is a future work avenue: 
 
-<blockquote>However, note that if $g$ is non-differentiable or insufficiently smooth, one may still use the mimicry / KDE term of Eq. (2) as a search heuristic. This investigation is left to future work.</blockquote>
+<blockquote>
+However, note that if $g$ is non-differentiable or insufficiently smooth, one may still use the mimicry / KDE term of Eq. (2) as a search heuristic. This investigation is left to future work. 
+</blockquote>
 
 The authors provide an algorithm to solve the optimization problem posed by the previous section's equation. Let's break down this algorithm:
 
