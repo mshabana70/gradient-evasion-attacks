@@ -124,5 +124,13 @@ Understanding the inputs:
 - $\lambda$: Trade-off parameter - how much to care about mimicry vs evasion
 - $\epsilon$: Convergence threshold (when to stop)
 
+The first three steps (1-3) are just basic steps detailing iteration. The authors use $m$ as a counter variable that increments by 1.
+
+Step 4 is really the heart of the algorithm. It's computing the gradient of the objective function $F(\textbf{x}) = \hat{g}(\textbf{x}) - \lambda \nabla p(\textbf{x}|y^{c} = -1)$:
+- $\nabla g(\textbf{x}^{m-1})$: This is the gradient pointing towards "fool the classifier more".
+- $\lambda \nabla p(\textbf{x}^{m-1}|y^{c} = -1)$: Gradient pointing towards "higher density legitimate regions"
+- The minus sign in this step subtracts $\lambda$ times the density gradient so that we're actually moving towards higher density.
+- We set this gradient of the objective function to a unit vector so that we normalize the direction. This allows for step size $t$ to control distance consistently. "break this down more"
+
 
 
