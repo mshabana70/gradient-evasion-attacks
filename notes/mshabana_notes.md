@@ -107,8 +107,7 @@ The authors provide an algorithm to solve the optimization problem posed by the 
 **Output:** $`\textbf{x}^{*}`$, the final attack point. <br>
 1: $`m \leftarrow 0`$ <br>
 2: **repeat:** <br>
-3: &emsp; $`m \leftarrow m + 1`$ 
-<br>
+3: &emsp; $`m \leftarrow m + 1`$ <br>
 4: &emsp; Set $\nabla F(\textbf{x}^{m-1})$ to a unit vector aligned with $\nabla g(\textbf{x}^{m-1}) - \lambda \nabla p(\textbf{x}^{m-1}|y^{c} = -1)$. <br>
 5: &emsp; $\textbf{x}^{m} \leftarrow \textbf{x}^{m-1} - t\nabla F(\textbf{x}^{m-1})$<br>
 6: &emsp; **if** $d(\textbf{x}^{m}, \textbf{x}^{0}) > d_{max}$ **then** <br>
