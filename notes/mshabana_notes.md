@@ -104,9 +104,9 @@ However, note that if $g$ is non-differentiable or insufficiently smooth, one ma
 The authors provide an algorithm to solve the optimization problem posed by the previous section's equation. Let's break down this algorithm:
 
 **Input:** $\textbf{x}^{0}$, the initial attack point; $t$, the step size; $\lambda$, the trade-off parameter; $\epsilon > 0$ a small constant. 
-<br>
+</br>
 **Output:** $\textbf{x}^{*}$, the final attack point. 
-<br>
+</br>
 1: $m \leftarrow 0$ 
 <br>
 2: **repeat:** 
