@@ -99,7 +99,7 @@ Something mentioned in this section is a future work avenue:
 
 <blockquote>
 However, note that if $g$ is non-differentiable or insufficiently smooth, one may still use the mimicry / KDE term of Eq. (2) as a search heuristic. This investigation is left to future work. 
-</blockquote>
+</blockquote><br>
 
 The authors provide an algorithm to solve the optimization problem posed by the previous section's equation. Let's break down this algorithm:
 
@@ -115,6 +115,14 @@ The authors provide an algorithm to solve the optimization problem posed by the 
 8: &emsp; **end if** <br>
 9: **until** $F(\textbf{x}^{m}) - F(\textbf{x}^{m -1}) < \epsilon$ <br>
 10: **return:** $\textbf{x}^{*} = \textbf{m}^{m}$
+
+Let's walk through this algorithm line by line and understand how we conduct the gradient-based attack and actually solved the predefined optimization problem:
+
+Understanding the inputs:
+- $\textbf{x}^{0}$: The starting point (your original malicious sample)
+- $t$: The step size or how big of steps you take in each iteration of the algorithm.
+- $\lambda$: Trade-off parameter - how much to care about mimicry vs evasion
+- $\epsilon$: Convergence threshold (when to stop)
 
 
 
