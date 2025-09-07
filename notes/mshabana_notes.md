@@ -132,5 +132,9 @@ Step 4 is really the heart of the algorithm. It's computing the gradient of the 
 - The minus sign in this step subtracts $\lambda$ times the density gradient so that we're actually moving towards higher density.
 - We set this gradient of the objective function to a unit vector so that we normalize the direction. This allows for step size $t$ to control distance consistently. "break this down more"
 
+Step 5 is standard gradient steps. simply moving in the computed direction
 
+Steps 6, 7 and 8 are enforcing the constraint we discussed earlier: $d(\textbf{x}^{m}, \textbf{x}^{0}) > d_{max}$. This means the adversarial example can't be too different from the original. If our optimization computation does step outside of this feasible region, project back onto the boundary.
+
+Finally, step 9 does a convergence check. Stop the algorithm once the improvements to the objective function $F(\textbf{x}^{m-1})$ are tiny.
 
