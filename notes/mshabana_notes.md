@@ -138,3 +138,13 @@ Steps 6, 7 and 8 are enforcing the constraint we discussed earlier: $d(\textbf{x
 
 Finally, step 9 does a convergence check. Stop the algorithm once the improvements to the objective function $F(\textbf{x}^{m-1})$ are tiny.
 
+#### Gradients of discriminant functions
+
+This section goes over discriminant functions for popular classifier algorithms:
+
+1. **Linear classifiers**: Linear discriminant functions are $g(\textbf{x}) = \langle \textbf{w}, \textbf{x} \rangle + b$. $\textbf{w}$ is the feature weights is defined as $\textbf{w} \in \mathbb{R}^{d}$ and $B$ is the bias defined as $b \in \mathbb{R}$. The gradient of the linear discriminant function is defined as $\nabla g(\textbf{x}) = \textbf{w}$
+2. **Support Vector Machines**: SVM discriminant functions are defined as $g(\textbf{x}) = \sum_{i} \alpha_{i} y_{i} k(\textbf{x}, \textbf{x}_{i}) + b$. Let's first break down what this discriminant function means:
+    - $\alpha_{i}$ and $y_{i}$ are coefficients and labels associated with support vectors.
+    - $k(\textbf{x}, \textbf{x}_{i})$ is the kernel function that measures similarity between the input $\textbf{x}$ and the support vector $\textbf{x}_{i}$
+    - $b$ is the bias term again
+    
