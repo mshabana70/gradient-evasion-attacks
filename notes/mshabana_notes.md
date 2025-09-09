@@ -147,4 +147,6 @@ This section goes over discriminant functions for popular classifier algorithms:
     - $\alpha_{i}$ and $y_{i}$ are coefficients and labels associated with support vectors.
     - $k(\textbf{x}, \textbf{x}_{i})$ is the kernel function that measures similarity between the input $\textbf{x}$ and the support vector $\textbf{x}_{i}$
     - $b$ is the bias term again
+The gradient for this discriminant function is given by the following: $\nabla g(\textbf{x}) = \sum_{i}\alpha_{i}y_{i}\nabla k(\textbf{x}, \textbf{x}_{i})$. This gradient is dependant on whether or not the gradient of kernel is computable. The paper provides examples with the RBF kernel and the polynomial kernel, where gradients can be computed for each.
+
     
