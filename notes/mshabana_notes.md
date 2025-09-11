@@ -162,4 +162,10 @@ In the toy MNIST example, the authors focus on discriminating between two distin
 
 The experiment assumes the *perfect knowledge*(PK) attack scenario we detailed earlier. The adversary have full access and knowledge about the target classifier's details. 
 
-The constraints are defined as the $l1$-norm (mahattan distance) to confine the attack sample to a limited range from the original data samples. Essentially the gray-scale images can't look TOO different from the original data samples, which is achieved by limiting the deviation (or bounding) the total distance between the gray-level values of the original image $\textbf{x}^{0}$ from the attack image $\textbf{x}$.   
+The constraints are defined as the $l1$-norm (mahattan distance) to confine the attack sample to a limited range from the original data samples. Essentially the gray-scale images can't look TOO different from the original data samples, which is achieved by limiting the deviation (or bounding) the total distance between the gray-level values of the original image $\textbf{x}^{0}$ from the attack image $\textbf{x}$. So this distance measure is set for the kernel density estimator (KDE), as well as the constraint we talked about earlier: $d(\textbf{x}, \textbf{x}^{0}) \leq d_{max}$. This $d_{max}$ is what's limiting the total change in gray-scale values between $\textbf{x}^{0}$ and $\textbf{x}$. The gradient step size is also defined as a proportion of this limit. 
+
+Target classifier in this case is an SVM with a linear kernel and the hyperparameter $C = 1$. The effects of $C$ is something that can be discussed in more detail separately but it helps control the trade-off between maximizing margins and minimizing misclassification in SVM classifiers.
+
+The authors chose 100 training samples and applied the attack to correctly classified positive samples.
+
+The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space)
