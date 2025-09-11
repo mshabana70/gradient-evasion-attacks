@@ -154,5 +154,5 @@ There is an important not on the scaling factor for computing gradients of the m
 
 ### Experiments
 
-
+The first report is on a toy example utilizing the MNIST digit classification dataset (classic).
     
