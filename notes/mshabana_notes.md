@@ -154,5 +154,9 @@ There is an important not on the scaling factor for computing gradients of the m
 
 ### Experiments
 
-The first report is on a toy example utilizing the MNIST digit classification dataset (classic).
+The first report is on a toy example utilizing the MNIST digit classification dataset (classic). This is mainly to show visual modification of teh digits to mislead classification. 
+
+NOTE: might be interesting to try another visual dataset like MSCOCO to see how the techniques shown in this paper carry over or break under different feature spaces.
+
+In the toy MNIST example, the authors focus on discriminating between two distinct digits (as opposed to all 10 digit labels).
     
