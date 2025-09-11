@@ -158,5 +158,8 @@ The first report is on a toy example utilizing the MNIST digit classification da
 
 NOTE: might be interesting to try another visual dataset like MSCOCO to see how the techniques shown in this paper carry over or break under different feature spaces.
 
-In the toy MNIST example, the authors focus on discriminating between two distinct digits (as opposed to all 10 digit labels). They use the labels "3" and the goal is to manipulate it to be misclassified as a "7". The digit samples are converted from 28x28 pixel gray-scale images to a 784 feature vector. 
-    
+In the toy MNIST example, the authors focus on discriminating between two distinct digits (as opposed to all 10 digit labels). They use the labels "3" and the goal is to manipulate it to be misclassified as a "7". The digit samples are converted from 28x28 pixel gray-scale images to a 784 feature vector. This is normalized though by dividing the feature vector by 255 (the standard pixel range) to make sure all features are on a similar scale and there are no outliers or extremas in the feature representations.
+
+The experiment assumes the *perfect knowledge*(PK) attack scenario we detailed earlier. The adversary have full access and knowledge about the target classifier's details. 
+
+The constraints are defined as the $l1$-norm (mahattan distance) to confine the attack sample to a limited range from the original data samples. Essentially the gray-scale images can't look TOO different from the original data samples, which is achieved by limiting the deviation (or bounding) the total distance between the gray-level values of the original image $\textbf{x}^{0}$ from the attack image $\textbf{x}$.   
