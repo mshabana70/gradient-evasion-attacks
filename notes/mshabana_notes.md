@@ -151,4 +151,8 @@ The gradient for this discriminant function is given by the following: $\nabla g
 3. **Neural Networks**: The authors detail an NN discriminent function for a multi-layer perceptron with a SINGLE hidden layer (important point): $g(\textbf{x}) = (1 + e^{-h(\textbf{x})})^{-1}$, where $h(x)$ is computed with a single hidden layer of $m$ neurons and a sigmoid activation function $\delta$. This defines $h(x)$ as: $h(\textbf{x}) = \sum_{k=1}^{m} w_{k}\delta_{k}(\textbf{x}) + b$. There are more details here that describe the nature of how NNs compute but I'll leave that out.
 
 There is an important not on the scaling factor for computing gradients of the mimicry component in the objective function $F(\textbf{x})$; The gradients of the kernel function in the mimicry component is proportional to $O(\frac{1}{nh})$, where $n$ is the number of benign samples available to the adversary and $h$ is the bandwidth of the kernel function. 
+
+### Experiments
+
+
     
