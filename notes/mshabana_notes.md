@@ -158,5 +158,5 @@ The first report is on a toy example utilizing the MNIST digit classification da
 
 NOTE: might be interesting to try another visual dataset like MSCOCO to see how the techniques shown in this paper carry over or break under different feature spaces.
 
-In the toy MNIST example, the authors focus on discriminating between two distinct digits (as opposed to all 10 digit labels).
+In the toy MNIST example, the authors focus on discriminating between two distinct digits (as opposed to all 10 digit labels). They use the labels "3" and the goal is to manipulate it to be misclassified as a "7". The digit samples are converted from 28x28 pixel gray-scale images to a 784 feature vector. 
     
