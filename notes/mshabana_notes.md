@@ -166,6 +166,9 @@ The constraints are defined as the $l1$-norm (mahattan distance) to confine the 
 
 Target classifier in this case is an SVM with a linear kernel and the hyperparameter $C = 1$. The effects of $C$ is something that can be discussed in more detail separately but it helps control the trade-off between maximizing margins and minimizing misclassification in SVM classifiers.
 
-The authors chose 100 training samples and applied the attack to correctly classified positive samples.
+The authors chose 100 training samples at random and applied the attack to correctly classified positive samples (a "3").
 
-The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space).
+The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space). Let's break up the notes based on these different attacks:
+
+1. **$\lambda = 0$**: Here the mission of the experiment is to transform the image of a handwritten "3" (a malicious sample) so that the classifier misclassifies it as a "7". With $\lambda = 0$, the attack solely focuses on minimizing $g(\textbf{x})$ (no need for $\hat{g}(\textbf{x})$ since this is a perfect knowledge scenario). The adversary's goal is purely push the sample across the decision boundary, making it misclassified, without any regard for how "natural" or "legitimate-looking" the modified sample becomes. 
+
