@@ -168,4 +168,4 @@ Target classifier in this case is an SVM with a linear kernel and the hyperparam
 
 The authors chose 100 training samples and applied the attack to correctly classified positive samples.
 
-The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space)
+The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space).
