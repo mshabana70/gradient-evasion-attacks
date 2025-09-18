@@ -168,7 +168,7 @@ Target classifier in this case is an SVM with a linear kernel and the hyperparam
 
 The authors chose 100 training samples at random and applied the attack to correctly classified positive samples (a "3").
 
-The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space). Let's break up the notes based on these different attacks:
+The authors detail the visual and time difference between attacks with $\lambda = 0$ and $\lambda = 10$. Recalling our breakdown of what $\lambda$ does, it is the weight of the mimicry component, meaning it controls how much influence the mimicry component (guiding optimization towards dense legitimate regions in the feature space) has on the optimization process. Let's break up the notes based on these different attacks:
 
 1. **$\lambda = 0$**: Here the mission of the experiment is to transform the image of a handwritten "3" (a malicious sample) so that the classifier misclassifies it as a "7". With $\lambda = 0$, the attack solely focuses on minimizing $g(\textbf{x})$ (no need for $\hat{g}(\textbf{x})$ since this is a perfect knowledge scenario). The adversary's goal is purely push the sample across the decision boundary, making it misclassified, without any regard for how "natural" or "legitimate-looking" the modified sample becomes. This gives a visual effect that looks distorted and not something that resembles a "7" or a "3". So it's not the most stealthy approach if someone was visually looking at the samples.
 
