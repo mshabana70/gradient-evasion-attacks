@@ -19,3 +19,18 @@ class GradientEvasionAttack():
         self.max_iter = max_iter
         self.mimicry_param = mimicry_param
         self.norm = norm
+
+    def _compute_gradient(self, x: np.ndarray) -> np.ndarray:
+        """
+        compute the gradient of the classifier's discriminant function at point x.
+
+        Parameters:
+        - x: The input data point at which to compute the gradient.
+
+        Returns:
+        - The computed gradient as a numpy array.
+        """
+        # placholder for gradient computation
+        # This should be replaced with actual gradient computation logic
+        # The classifier must have a discriminant_function method
+        return 0
