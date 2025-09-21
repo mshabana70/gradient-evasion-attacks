@@ -30,7 +30,7 @@ class GradientEvasionAttack():
         Returns:
         - The computed gradient as a numpy array.
         """
-        # placholder for gradient computation
+        # placeholder for gradient computation
         # This should be replaced with actual gradient computation logic
         # The classifier must have a discriminant_function method
         return 0
