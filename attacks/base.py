@@ -44,5 +44,29 @@ class BaseAttack(ABC):
     Paper References:
         - Goodfellow et al., 2014: "Explaining and Harnessing Adversarial Examples"
         - Madry et al., 2017: "Towards Deep Learning Models Resistant to Adversarial Attacks"
-
     """
+
+    def __init__(self, model: nn.Module, config: Optional[AttackConfig] = None, device: Optional[torch.device] = None):
+        """
+        Initialize attack.
+
+        Args:
+            model: PyTorch model to attack
+            config: Attack config parameters
+            device: Computation device (CPU/GPU)
+        """
+        self.model = model
+        self.config = config or AttackConfig()
+        self.device = device or torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model.to(self.device)
+        self.model.eval()
+
+        # attack metadata for logging
+        self.attack_name = self.__class__.__name__
+        self.stats = {
+            "queries": 0,
+            "success_rate": 0.0,
+            "avg_distortion": 0.0
+        }
+
+    
