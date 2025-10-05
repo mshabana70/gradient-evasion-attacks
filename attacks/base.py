@@ -102,6 +102,19 @@ class BaseAttack(ABC):
                 return nn.CrossEntropyLoss()(outputs, labels)
         return loss_fn
     
+    def _clip_pertubation(self, perturbation: torch.Tensor, norm: str) -> torch.Tensor:
+        """
+        Clip perturbation to be within the specified norm ball.
+
+        Args:
+            perturbation: Raw Perturbation
+            norm: Type of norm constraint ('linf', 'l2', 'l1')
+        
+        Returns:
+            Clipped perturbation
+        """
+        
+    
     def _project_to_ball(self, x: torch.Tensor, x_adv: torch.Tensor, eps: float) -> torch.Tensor:
         """
         Project adversarial example to epsilon ball around original samples.
