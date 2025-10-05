@@ -102,4 +102,31 @@ class BaseAttack(ABC):
                 return nn.CrossEntropyLoss()(outputs, labels)
         return loss_fn
     
-    
+    def _project_to_ball(self, x: torch.Tensor, x_adv: torch.Tensor, eps: float) -> torch.Tensor:
+        """
+        Project adversarial example to epsilon ball around original samples.
+        
+        Args:
+            x_adv: Adversarial examples
+            x: Original samples
+            eps: Epsilon radius
+
+        Returns:
+            Projected adversarial examples
+        """
+
+        if self.config.norm == 'linf':
+            x_adv = torch.min(x + eps, torch.max(x - eps, x_adv)) # L_inf(x_adv - x) = max_i |x_adv_i - x_i | <= eps 
+        elif self.config.norm == 'l2': # L_2(x_adv - x) = sqrt(sum_i (x_adv_i - x_i)^2) <= eps
+            delta = x_adv - x
+            delta_flat = delta.view(delta.size(0), -1)
+            norm = torch.norm(delta_flat, p=2, dim=1)
+            mask = norm > eps # finds all adv examples outside the L2 ball
+            if mask.any():
+                delta_flat[mask] = delta_flat[mask] * (eps / norm[mask]).view(-1, 1) # projection step
+                delta = delta_flat.view_as(delta)
+                x_adv = x + delta
+        
+        # ensure valid pixel range
+        x_adv = torch.clamp(x_adv, self.config.clip_min, self.config.clip_max)
+        return x_adv
