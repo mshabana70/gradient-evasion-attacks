@@ -207,6 +207,8 @@ class BaseAttack(ABC):
         Save the perturbation (adversarial example) to a file.
         """
         perturbation = x_adv - x
+
+        # saving with cpu to avoid device issues
         torch.save({
             'perturbation': perturbation.cpu(),
             'x': x.cpu(),
