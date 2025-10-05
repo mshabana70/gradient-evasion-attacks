@@ -69,4 +69,16 @@ class BaseAttack(ABC):
             "avg_distortion": 0.0
         }
 
-    
+    @abstractmethod
+    def perturb(self, x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
+        """
+        Generate adversarial pertubations.
+
+        Args:
+            x: Input samples (batch_size, C, H, W)
+            y: True labels or target labels for targeted attacks
+
+        Returns:
+            Adversarial examples
+        """
+        pass
