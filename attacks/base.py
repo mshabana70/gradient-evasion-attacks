@@ -201,3 +201,19 @@ class BaseAttack(ABC):
                 'confidence_clean': torch.softmax(outputs_clean, dim=1).max(dim=1)[0].mean().item(),
                 'confidence_adv': torch.softmax(outputs_adv, dim=1).max(dim=1)[0].mean().item()
             }
+    
+    def save_perturbation(self, x: torch.Tensor, x_adv: torch.Tensor, path: str):
+        """
+        Save the perturbation (adversarial example) to a file.
+        """
+        perturbation = x_adv - x
+        torch.save({
+            'perturbation': perturbation.cpu(),
+            'x': x.cpu(),
+            'x_adv': x_adv.cpu(),
+            'config': self.config,
+            'attack': self.attack_name
+        }, path)
+
+        if self.config.verbose:
+            print(f"[INFO] Saved perturbation to {path}")
