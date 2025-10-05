@@ -113,7 +113,17 @@ class BaseAttack(ABC):
         Returns:
             Clipped perturbation
         """
-        
+        if norm == 'linf':
+            perturbation = torch.clamp(perturbation, -self.config.eps, self.config.eps) # bounds perturbation => -eps < perturbation < eps
+        elif norm == 'l2':
+            norm_val = torch.norm(perturbation.view(perturbation.size(0), -1), p=2, dim=1) # 
+            mask = norm_val > self.config.eps
+            if mask.any():
+                perturbation[mask] = perturbation[mask] * (self.config.eps / norm_val[mask]).view(-1, 1, 1, 1) # explain this step in math terms:  
+        else:
+            raise ValueError(f"Unsupported norm type: {norm}")
+
+        return perturbation
     
     def _project_to_ball(self, x: torch.Tensor, x_adv: torch.Tensor, eps: float) -> torch.Tensor:
         """
