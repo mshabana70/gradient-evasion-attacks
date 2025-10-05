@@ -135,8 +135,8 @@ class BaseAttack(ABC):
         Project adversarial example to epsilon ball around original samples.
         
         Args:
-            x_adv: Adversarial examples
             x: Original samples
+            x_adv: Adversarial examples
             eps: Epsilon radius
 
         Returns:
@@ -158,3 +158,46 @@ class BaseAttack(ABC):
         # ensure valid pixel range
         x_adv = torch.clamp(x_adv, self.config.clip_min, self.config.clip_max)
         return x_adv
+    
+    def evaluate_success(self, x: torch.Tensor, x_adv: torch.Tensor, y: torch.Tensor) -> Dict[str, Any]:
+        """
+        Evaluate attack success rate and average distortion.
+
+        Args:
+            x: Original samples
+            x_adv: Adversarial examples
+            y: True labels
+        
+        Returns:
+            Dictionary containing success metrics
+        """
+        with torch.no_grad():
+            
+            # predictions on clean and adv samples
+            outputs_clean = self.model(x)
+            outputs_adv = self.model(x_adv)
+
+            pred_clean = torch.argmax(outputs_clean, dim=1)
+            pred_adv = torch.argmax(outputs_adv, dim=1)
+
+            # calc metrics
+            if self.config.targeted:
+                success = (pred_adv == y).float().mean().item() 
+            else:
+                success = (pred_adv != y).float().mean().item()
+
+            # calc distortion
+            if self.config.norm == 'linf':
+                distortion = (x_adv - x).abs().max().item() # L_inf distortion
+            elif self.config.norm == 'l2':
+                distortion = torch.norm((x_adv - x).view(x.size(0), -1), p=2, dim=1).mean().item() # L_2 distortion
+            else:
+                distortion = torch.norm((x_adv - x).view(x.size(0), -1), p=1, dim=1).mean().item() # L_1 distortion
+            
+            return {
+                'success_rate': success,
+                'avg_distortion': distortion,
+                'clean_accuracy': (pred_clean == y).float().mean().item(),
+                'confidence_clean': torch.softmax(outputs_clean, dim=1).max(dim=1)[0].mean().item(),
+                'confidence_adv': torch.softmax(outputs_adv, dim=1).max(dim=1)[0].mean().item()
+            }
