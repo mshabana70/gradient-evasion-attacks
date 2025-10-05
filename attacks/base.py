@@ -116,10 +116,15 @@ class BaseAttack(ABC):
         if norm == 'linf':
             perturbation = torch.clamp(perturbation, -self.config.eps, self.config.eps) # bounds perturbation => -eps < perturbation < eps
         elif norm == 'l2':
-            norm_val = torch.norm(perturbation.view(perturbation.size(0), -1), p=2, dim=1) # 
+            norm_val = torch.norm(perturbation.view(perturbation.size(0), -1), p=2, dim=1) # l2 length of each perturb in the batch: sqrt(sum_i perturbation_i^2)
             mask = norm_val > self.config.eps
             if mask.any():
-                perturbation[mask] = perturbation[mask] * (self.config.eps / norm_val[mask]).view(-1, 1, 1, 1) # explain this step in math terms:  
+                perturbation[mask] = perturbation[mask] * (self.config.eps / norm_val[mask]).view(-1, 1, 1, 1) # rescaling perturb: perturbation * (eps / ||perturbation||_2)
+        elif norm == 'l1':
+            norm_val = torch.norm(perturbation.view(perturbation.size(0), -1), p=1, dim=1) # l1 length of each perturb in the batch: sum_i |perturbation_i|
+            mask = norm_val > self.config.eps
+            if mask.any():
+                perturbation[mask] = perturbation[mask] * (self.config.eps / norm_val[mask]).view(-1, 1, 1, 1) # rescaling perturb: perturbation * (eps / ||perturbation||_1)
         else:
             raise ValueError(f"Unsupported norm type: {norm}")
 
