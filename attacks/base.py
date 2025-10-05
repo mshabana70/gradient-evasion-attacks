@@ -82,3 +82,24 @@ class BaseAttack(ABC):
             Adversarial examples
         """
         pass
+
+    def __call__(self, x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
+        """Make the class callable."""
+        return self.perturb(x, y)
+    
+    def _get_loss_fn(self) -> Callable:
+        """
+        Get the appropriate loss function based on attack config.
+
+        Returns:
+            Loss function for attack
+        """
+        if self.config.targeted:
+            def loss_fn(outputs, labels):
+                return -nn.CrossEntropyLoss()(outputs, labels)
+        else:
+            def loss_fn(outputs, labels):
+                return nn.CrossEntropyLoss()(outputs, labels)
+        return loss_fn
+    
+    
